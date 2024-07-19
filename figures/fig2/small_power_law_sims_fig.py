@@ -55,6 +55,7 @@ for i, j in enumerate([0,1,]):
     ax[i].set_xticks([1, 10, 100, 1000])
     ax[i].grid()
 fig.tight_layout()
+eig_da.close()
 plt.savefig('pl_example_sims.pdf', bbox_inches='tight', transparent=True)
 
 
