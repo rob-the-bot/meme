@@ -9,7 +9,7 @@ Created on Wed Nov  3 10:02:46 2021
 import numpy as np
 from scipy import linalg as LA
 from scipy.optimize import least_squares
-from tqdm import tqdm
+from tqdm.auto import tqdm
 from math import comb
 
 ### simulation functions
@@ -233,11 +233,12 @@ def bs_eig_mom(Y_r, k_moms, n_samps=None):
         n_samps = n_obs_needed_to_whiten_d_dims(k_moms)
     n_stim= np.shape(Y_r)[1]
     Hs = np.zeros((n_samps, k_moms))
-    for i in tqdm(range(n_samps)):
+    for i in trange(n_samps):
         stim_resamp = np.random.choice(n_stim, replace=True, size=n_stim)
         b_Y_r = Y_r[:, stim_resamp]
         H = signal_er_eig_momk_centered(b_Y_r[0], b_Y_r[1], k_moms=k_moms)
-        Hs[i, :] = H
+        Hs[i] = H
+
     return Hs
 
 def eig_mom_transforms(eig_mom, transform='raw'):
