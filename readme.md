@@ -18,7 +18,7 @@ Top level directory is: ./meme_v1_bpl/. The three directories below it are:
 ### Processing raw data
 1. Download original data from:
 [Recordings_of_ten_thousand_neurons_in_visual_cortex_in_response_to_2_800_natural_images](https://figshare.com/articles/dataset/Recordings_of_ten_thousand_neurons_in_visual_cortex_in_response_to_2_800_natural_images/6845348)
-to a folder: `'./stringer_2019/orig_stringer_2019_data/'` then update
+to a folder: `'./stringer_2019/orig_stringer2019_data/'` then update
 `'./data/data_dir.txt'` to the directory that `'/stringer_2019/'` is in.
 
 2. Run
