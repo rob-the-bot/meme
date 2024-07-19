@@ -2,7 +2,7 @@
 import os
 import numpy as np
 import xarray as xr
-from tqdm import tqdm
+from tqdm.auto import tqdm
 import scipy.io as sio
 from sklearn.decomposition import TruncatedSVD
 import matplotlib.pyplot as plt
@@ -29,9 +29,9 @@ sub_sample = 1
 
 #
 #%% SVD of split cov matrix for neur X neur and stim X stim
-for rec in tqdm(range(len(fns))):
-    da = xr.open_dataset(fns[rec])
-    fn = fns[rec].split('/')[-1].split('.')[0]
+for f_rec in tqdm(fns):
+    da = xr.open_dataset(f_rec)
+    fn = f_rec.split('/')[-1].split('.')[0]
     r = da['resp'][:, ::sub_sample, ::sub_sample]   
     n_rep, n_stim, n_neur = r.shape
     r = r - r.mean('stim')
@@ -48,9 +48,9 @@ sub_sample = 1
 dim_filter_basis = 100 #number of image PCs to use in regression (regression gets noisier with more PCS, we did not find performance improvements beyond ~100)
 imgs = sio.loadmat(orig_data_dir + 'images_natimg2800_all.mat')['imgs']
 dim = 100
-for rec in tqdm(range(len(fns))):
-    fn = fns[rec].split('/')[-1].split('.')[0]
-    r = xr.open_dataset(fns[rec])['resp']
+for f_rec in tqdm(fns):
+    fn = f_rec.split('/')[-1].split('.')[0]
+    r = xr.open_dataset(f_rec)['resp']
     imgs_exp = imgs[:, :, r.coords['stim'].values]#get the images in order to correspond to the responses
     imgs_exp = imgs_exp.transpose((-1,0,1))#reshape for SVD
     n_imgs, n_rows, n_cols = imgs_exp.shape

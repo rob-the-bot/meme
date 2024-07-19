@@ -12,7 +12,7 @@ import scipy.io as io
 from scipy.sparse.linalg import eigsh
 import os
 import xarray as xr
-from tqdm import tqdm
+from tqdm.auto import tqdm
 import pandas as pd
 data_dir = './stringer_2019/'
 #check if processed_data folder exists, if not make it and all the other data folders
@@ -24,7 +24,7 @@ if not os.path.exists(data_dir + '/processed_data/'):
     os.makedirs(data_dir + '/processed_data/stringer_sn_covs/')
 fns = [fn for fn in os.listdir(data_dir + 'orig_stringer2019_data/') if 'natimg2800_' in fn and not 'image' in fn]
 
-for fn in (fns[:]):
+for fn in tqdm(fns):
     print(fn)
     dat = io.loadmat(data_dir + fn)
     #this saves the tdtomato cell ids for recordings that have them 
@@ -44,7 +44,7 @@ for fn in (fns[:]):
 #ms_ is the mean subtracted responses
 #spont_sub_ is the mean subtracted responses with spontaneous activity subtracted
 for rec_trans in ['raw_', 'spont_sub_'][:]:
-    for fn in (fns[:]):
+    for fn in tqdm(fns):
         print(fn)
         dat = io.loadmat(data_dir + fn)
         resp = dat['stim'][0]['resp'][0] # stim x neurons
