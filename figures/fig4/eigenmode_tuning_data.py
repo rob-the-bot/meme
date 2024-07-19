@@ -6,6 +6,7 @@ from tqdm.auto import tqdm
 import scipy.io as sio
 from sklearn.decomposition import TruncatedSVD
 import matplotlib.pyplot as plt
+import sys
 sys.path.append('../../src/')
 import eig_mom as em
 
@@ -24,7 +25,7 @@ orig_data_dir = data_dir + 'orig_stringer2019_data/'
 resp_data_dir = data_dir + 'processed_data/neural_responses/'
 eig_tuning_dir = data_dir + 'processed_data/eig_tuning/'
 
-fns = [resp_data_dir + fn for fn in os.listdir(resp_data_dir) if 'natimg2800_M' in fn and not 'npy' in fn and 'ms' in fn]
+fns = [resp_data_dir + fn for fn in os.listdir(resp_data_dir) if 'natimg2800_M' in fn and not 'npy' in fn and 'spont_sub_' in fn]
 sub_sample = 1
 
 #
