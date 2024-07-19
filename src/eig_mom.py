@@ -9,7 +9,7 @@ Created on Wed Nov  3 10:02:46 2021
 import numpy as np
 from scipy import linalg as LA
 from scipy.optimize import least_squares
-from tqdm.auto import tqdm
+from tqdm.auto import tqdm, trange
 from math import comb
 
 ### simulation functions

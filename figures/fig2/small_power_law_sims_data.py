@@ -8,7 +8,7 @@ Created on Thu Jun  2 11:08:19 2022
 #%%
 import sys
 import numpy as np
-from tqdm import tqdm
+from tqdm.auto import tqdm, trange
 import os
 from itertools import product
 import pandas as pd
@@ -37,7 +37,7 @@ eig_da = xr.DataArray(np.zeros((len(params), d_neurons, 4)),
                       coords=[range(len(params)), range(1, 1 + d_neurons), ['meme', 'cvpca', 'true_sig', 'true_noise']],
                       dims=['param', 'neuron', 'type'])
 
-for i in tqdm(range(len(params))):
+for i in trange(len(params)):
     c_sig, c_noise, alpha_sig, alpha_noise, n_stim, align = params[i]
     Y_r, ind, s_eig, n_eig = em.get_power_law_SN_sim(c_sig, c_noise, alpha_sig,
                                                   alpha_noise, d_neurons, n_stim,
