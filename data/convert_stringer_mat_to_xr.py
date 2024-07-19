@@ -74,7 +74,7 @@ for rec_trans in ['raw_', 'spont_sub_'][:]:
         # split stimuli into two repeats
         NN = resp.shape[1]
         sresp = np.zeros((2, nimg, NN), np.float64)
-        inan = np.zeros((nimg,), np.bool)
+        inan = np.zeros((nimg,), bool)
         img_inds = []
         for n in range(nimg):
             ist = (istim==n).nonzero()[0]#go through all images
