@@ -26,7 +26,7 @@ fns = [fn for fn in os.listdir(data_dir + 'orig_stringer2019_data/') if 'natimg2
 
 for fn in tqdm(fns):
     print(fn)
-    dat = io.loadmat(data_dir + fn)
+    dat = io.loadmat(data_dir + 'orig_stringer2019_data/' + fn)
     #this saves the tdtomato cell ids for recordings that have them 
     try:
         red_cell = [float(dat['stat'][i]['redcell']) for i in range(len(dat['stat']))]
@@ -46,7 +46,7 @@ for fn in tqdm(fns):
 for rec_trans in ['raw_', 'spont_sub_'][:]:
     for fn in tqdm(fns):
         print(fn)
-        dat = io.loadmat(data_dir + fn)
+        dat = io.loadmat(data_dir + 'orig_stringer2019_data/' + fn)
         resp = dat['stim'][0]['resp'][0] # stim x neurons
         spont = dat['stim'][0]['spont'][0] # timepts x neurons
         istim = (dat['stim'][0]['istim'][0]).astype(np.int32) # stim ids
